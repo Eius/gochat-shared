@@ -8,12 +8,12 @@ import (
 )
 
 type User struct {
-	Id             uuid.UUID   `json:"id"`
-	Username       vo.Username `json:"username"`
-	Email          vo.Email    `json:"email"`
-	HashedPassword vo.Password `json:"password"`
-	CreatedAt      time.Time   `json:"createdAt"`
-	UpdatedAt      time.Time   `json:"updatedAt"`
+	Id             uuid.UUID         `json:"id"`
+	Username       vo.Username       `json:"username"`
+	Email          vo.Email          `json:"email"`
+	HashedPassword vo.HashedPassword `json:"password"`
+	CreatedAt      time.Time         `json:"createdAt"`
+	UpdatedAt      time.Time         `json:"updatedAt"`
 }
 
 type UserRegister struct {
