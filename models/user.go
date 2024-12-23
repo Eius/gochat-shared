@@ -1,6 +1,20 @@
 package models
 
-import "github.com/Eius/gochat-shared/vo"
+import (
+	"time"
+
+	"github.com/Eius/gochat-shared/vo"
+	"github.com/google/uuid"
+)
+
+type User struct {
+	Id             uuid.UUID   `json:"id"`
+	Username       vo.Username `json:"username"`
+	Email          vo.Email    `json:"email"`
+	HashedPassword vo.Password `json:"password"`
+	CreatedAt      time.Time   `json:"createdAt"`
+	UpdatedAt      time.Time   `json:"updatedAt"`
+}
 
 type UserRegister struct {
 	Username        vo.Username `json:"username"`
