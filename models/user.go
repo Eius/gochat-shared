@@ -24,6 +24,6 @@ type UserRegister struct {
 }
 
 type UserLogin struct {
-	Username vo.Username `json:"username"`
+	Email    vo.Email    `json:"email"`
 	Password vo.Password `json:"password"`
 }
