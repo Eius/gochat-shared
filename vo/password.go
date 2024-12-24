@@ -12,6 +12,10 @@ type HashedPassword string
 const PasswordMinLength = 8
 const PasswordMaxLength = 64
 
+func (p Password) MarshalJSON() ([]byte, error) {
+	return json.Marshal(string(p))
+}
+
 func (p *Password) UnmarshalJSON(data []byte) error {
 	var str string
 	if err := json.Unmarshal(data, &str); err != nil {

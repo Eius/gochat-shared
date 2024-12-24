@@ -9,6 +9,10 @@ import (
 
 type Email string
 
+func (e Email) MarshalJSON() ([]byte, error) {
+	return json.Marshal(string(e))
+}
+
 func (e *Email) UnmarshalJSON(data []byte) error {
 	var str string
 	if err := json.Unmarshal(data, &str); err != nil {

@@ -11,6 +11,10 @@ type Username string
 const MinUsernameLength = 3
 const MaxUsernameLength = 50
 
+func (u Username) MarshalJSON() ([]byte, error) {
+	return json.Marshal(string(u))
+}
+
 func (u *Username) UnmarshalJSON(data []byte) error {
 	var str string
 	if err := json.Unmarshal(data, &str); err != nil {
