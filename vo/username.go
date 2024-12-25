@@ -35,3 +35,18 @@ func (u *Username) UnmarshalJSON(data []byte) error {
 func (u Username) Value() (driver.Value, error) {
 	return string(u), nil
 }
+
+func (u *Username) Scan(src interface{}) error {
+	if src == nil {
+		*u = Username("")
+		return nil
+	}
+
+	str, ok := src.(string)
+	if !ok {
+		return fmt.Errorf("Username cannot convert %T to string", src)
+	}
+
+	*u = Username(str)
+	return nil
+}

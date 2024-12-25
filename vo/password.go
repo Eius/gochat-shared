@@ -41,6 +41,21 @@ func (p HashedPassword) Value() (driver.Value, error) {
 	return string(p), nil
 }
 
+func (p *HashedPassword) Scan(src interface{}) error {
+	if src == nil {
+		*p = HashedPassword("")
+		return nil
+	}
+
+	str, ok := src.(string)
+	if !ok {
+		return fmt.Errorf("Password cannot convert %T to string", src)
+	}
+
+	*p = HashedPassword(str)
+	return nil
+}
+
 func (p HashedPassword) Bytes() []byte {
 	return []byte(string(p))
 }

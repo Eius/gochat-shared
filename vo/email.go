@@ -4,6 +4,7 @@ import (
 	"database/sql/driver"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/mail"
 )
 
@@ -29,4 +30,19 @@ func (e *Email) UnmarshalJSON(data []byte) error {
 
 func (e Email) Value() (driver.Value, error) {
 	return string(e), nil
+}
+
+func (e *Email) Scan(src interface{}) error {
+	if src == nil {
+		*e = Email("")
+		return nil
+	}
+
+	str, ok := src.(string)
+	if !ok {
+		return fmt.Errorf("Email cannot convert %T to string", src)
+	}
+
+	*e = Email(str)
+	return nil
 }
