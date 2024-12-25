@@ -4,11 +4,10 @@ import (
 	"time"
 
 	"github.com/Eius/gochat-shared/vo"
-	"github.com/google/uuid"
 )
 
 type User struct {
-	Id             uuid.UUID         `json:"id"`
+	Id             vo.UUID           `json:"id"`
 	Username       vo.Username       `json:"username"`
 	Email          vo.Email          `json:"email"`
 	HashedPassword vo.HashedPassword `json:"password"`
