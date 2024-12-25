@@ -12,6 +12,15 @@ import (
 type UUID gocql.UUID
 type UUIDs []UUID
 
+func RandomUUID() (UUID, error) {
+	uuid, err := gocql.RandomUUID()
+	if err != nil {
+		return UUID{}, err
+	}
+
+	return UUID(uuid), nil
+}
+
 func (uuid UUID) MarshalCQL(info gocql.TypeInfo) ([]byte, error) {
 	return gocql.Marshal(info, gocql.UUID(uuid))
 }
